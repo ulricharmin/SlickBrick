@@ -3,22 +3,25 @@ import java.awt.Color;
 import static de.gds2.bricks.Constants.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.awt.*;
 
 public class Ball {
-	private int lastBallX = 960;
-	private int lastBallY = 540;
-	private int velX = 8;
-	private int velY = 8;
-	private int currentBallX, currentBallY;
-	private int paddleX;
+	private float lastBallX = 940;
+	private float lastBallY = 540;
+	// Random start direction
+	private float velX;
+	private float velY;
+	private float currentBallX, currentBallY;
+	private float paddleX;
+	private int brickCount;
 	private List<Brick> bricks;
+	private boolean gameOver = false;
 	
 	public void paintBall(Graphics g) {
 		g.setColor(Color.GRAY);
-		g.fillOval(lastBallX, lastBallY, BALL_SIZE, BALL_SIZE);
+		g.fillOval((int)lastBallX, (int)lastBallY, BALL_SIZE, BALL_SIZE);
 		
 		bounce();
 		bounceBrick();
@@ -38,26 +41,33 @@ public class Ball {
 			velX *= -1;
 		} else if (lastBallY < 0) {
 			velY *= -1;
-		} else if (lastBallX > paddleX - 75 && lastBallX < paddleX + 75 && lastBallY > paddleY - (BALL_SIZE+10)) {
+		} else if (lastBallX > paddleX - 75 && lastBallX < paddleX + 75 && lastBallY > paddleY - (BALL_SIZE+18)) {
 			velY *= -1;
 		} else if (lastBallY > paddleY -(BALL_SIZE+6)) {
-			velY = 0;
-			velX = 0;
+			velY = -1;
+			velX = -1;
+			lastBallX = 940;
+			lastBallY = 540;
+			gameOver = true;
 		}
 	}
 	
 	public void bounceBrick() {
 		for (Brick brick : bricks) {
 			if (brick.getCollisionSide(currentBallX, currentBallY, velX, velY) == Sides.LEFT) {
+				brickCount--;
 				velX *= -1;
 				brick.setDestroyed(true);
 			} else if (brick.getCollisionSide(currentBallX, currentBallY, velX, velY) == Sides.RIGHT) {
+				brickCount--;
 				velX *= -1;
 				brick.setDestroyed(true);
 			} else if (brick.getCollisionSide(currentBallX, currentBallY, velX, velY) == Sides.TOP) {
+				brickCount--;
 				velY *= -1;
 				brick.setDestroyed(true);
 			} else if (brick.getCollisionSide(currentBallX, currentBallY, velX, velY) == Sides.BOTTOM) {
+				brickCount--;
 				velY *= -1;
 				brick.setDestroyed(true);
 			}
@@ -65,20 +75,28 @@ public class Ball {
 	}
 	
 	// Getter
-	public int getBallX() {
+	public float getBallX() {
 		return lastBallX;
 	}
 	
-	public int getBallY() {
+	public float getBallY() {
 		return lastBallY;
 	}
 	
-	public int getVelX() {
+	public float getVelX() {
 		return velX;
 	}
 	
-	public int getVelY() {
+	public float getVelY() {
 		return velY;
+	}
+	
+	public int getBrickCount() {
+		return brickCount;
+	}
+	
+	public boolean getGameOver() {
+		return gameOver;
 	}
 	
 	// Mutator
@@ -88,5 +106,29 @@ public class Ball {
 	
 	public void setBricks(List<Brick> p_bricks) {
 		bricks = p_bricks;
+	}
+	
+	public void setBrickCount(int p_brickCount) {
+		brickCount = p_brickCount;
+	}
+	
+	public void setBallVelX(float p_velX) {
+		velX = p_velX;
+	}
+	
+	public void setBallVelY(float p_velY) {
+		velY = p_velY;
+	}
+	
+	public void setBallX(int p_ballX) {
+		lastBallX = p_ballX;
+	}
+	
+	public void setBallY(int p_ballY) {
+		lastBallY = p_ballY;
+	}
+	
+	public void setGameOver(boolean p_state) {
+		gameOver = p_state;
 	}
 }
