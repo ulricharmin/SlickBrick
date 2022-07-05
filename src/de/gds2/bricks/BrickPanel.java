@@ -71,6 +71,8 @@ public class BrickPanel extends JPanel {
 						ball.setGameOver(false);
 						brickSetup();
 						ball.setBrickCount(brickCount);
+						ball.setBallX(940);
+						ball.setBallY(540);
 						state = GameState.START;
 					}
 				}
