@@ -41,7 +41,7 @@ public class Ball {
 			velX *= -1;
 		} else if (lastBallY < 0) {
 			velY *= -1;
-		} else if (lastBallX > paddleX - 75 && lastBallX < paddleX + 75 && lastBallY > paddleY - (BALL_SIZE+18)) {
+		} else if (lastBallX > paddleX - 75 && lastBallX < paddleX + 75 && lastBallY > paddleY - (BALL_SIZE+20)) {
 			velY *= -1;
 		} else if (lastBallY > paddleY -(BALL_SIZE+6)) {
 			velY = -1;

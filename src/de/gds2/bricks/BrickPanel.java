@@ -93,10 +93,9 @@ public class BrickPanel extends JPanel {
 				double delta = 0;
 				long lastTime = System.nanoTime();
 				long currentTime;
-
+				
 				while (true) {
 					currentTime = System.nanoTime();
-
 					delta += (currentTime - lastTime) / drawInterval;
 					lastTime = currentTime;
 
