@@ -4,7 +4,6 @@ import static de.gds2.bricks.Constants.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.List;
-import java.util.Random;
 import java.awt.*;
 
 public class Ball {

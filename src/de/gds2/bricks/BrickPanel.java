@@ -13,12 +13,8 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
-
-import org.w3c.dom.ls.LSException;
 
 import java.awt.event.KeyEvent;
 

@@ -5,8 +5,6 @@ import static de.gds2.bricks.Constants.*;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.plaf.synth.ColorType;
-
 public class Brick {
 
 	// Brick corners, starting top left clock wise
